@@ -2,6 +2,7 @@
 #include <sstream>
 #include <stdexcept>
 #include "PhysicalNumber.h"
+#include "Unit.h"
 
 using namespace std;
 using namespace ariel;
