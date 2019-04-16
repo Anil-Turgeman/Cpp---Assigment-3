@@ -72,13 +72,13 @@ PhysicalNumber &PhysicalNumber::operator--(){
 
 PhysicalNumber PhysicalNumber::operator++(int){
     PhysicalNumber temp(*this);
-    temp.getData->data++;
+    data++;
     return temp;
 }
 
 PhysicalNumber PhysicalNumber::operator--(int){
     PhysicalNumber temp(*this);
-    temp.getData->data--;
+    data--;
     return temp;
 }
 
