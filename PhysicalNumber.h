@@ -6,40 +6,44 @@
 #include "Unit.h"
 using namespace std;
 
-namespace ariel {
+namespace ariel{
     class PhysicalNumber{
         private:
             Unit unit;
             double data;
 
-        public:
+       public:
             PhysicalNumber(double, Unit);
             double getData();
-            Unit getUnit();
             void setData(double);
+            Unit getUnit();
             void setUnit(Unit);
-            
-            const PhysicalNumber operator+();
-            const PhysicalNumber& operator++();//prefix opertor -> ++i
-            const PhysicalNumber& operator++(int);//postfix opertor -> i++
-            const PhysicalNumber operator+=(const PhysicalNumber&);
-            friend const PhysicalNumber operator+(PhysicalNumber&, const PhysicalNumber&);
-            const PhysicalNumber operator-();
-            const PhysicalNumber& operator--();//prefix opertor -> ++i
-            const PhysicalNumber& operator--(int);//postfix opertor -> i++
-            const PhysicalNumber operator-=(const PhysicalNumber&);
-            friend const PhysicalNumber operator-(const PhysicalNumber&, const PhysicalNumber&);
 
-            bool operator==(const PhysicalNumber&);
-            bool operator!=(const PhysicalNumber&);
-            bool operator>(const PhysicalNumber&);
-            bool operator<(const PhysicalNumber&);
-            bool operator<=(const PhysicalNumber&);
-            bool operator>=(const PhysicalNumber&);
-        
-            friend ostream& operator<<(ostream&, const PhysicalNumber&);
-            friend istream& operator>>(istream&, PhysicalNumber&);
-    };
-}
+            PhysicalNumber operator+() const;
+            PhysicalNumber operator-() const;
+            PhysicalNumber operator+(const PhysicalNumber&) const;
+            PhysicalNumber operator-(const PhysicalNumber&) const;
+  
+            
+            PhysicalNumber& operator+=(const PhysicalNumber&);
+            PhysicalNumber& operator-=(const PhysicalNumber&);
+
+            PhysicalNumber& operator++();//prefix operator -> ++i
+            PhysicalNumber operator++(int);//postfix operator -> i++ 
+            PhysicalNumber& operator--();//prefix operator -> ++i 
+            PhysicalNumber operator--(int);//postfix operator -> i++ 
+
+            bool operator ==(const PhysicalNumber&) const;
+            bool operator !=(const PhysicalNumber&) const;
+            bool operator <=(const PhysicalNumber&) const;
+            bool operator >=(const PhysicalNumber&) const;  
+            bool operator <(const PhysicalNumber&) const;
+            bool operator >(const PhysicalNumber&) const;
+
+            double convert(const PhysicalNumber&, const PhysicalNumber&) const;
+            friend ostream& operator<<(ostream& os, const PhysicalNumber&);
+            friend istream& operator>>(istream& is, PhysicalNumber&);
+   };
+};
 
 #endif
