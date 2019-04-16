@@ -40,7 +40,7 @@ PhysicalNumber PhysicalNumber::operator+() const { return PhysicalNumber(1*data,
 
 
 PhysicalNumber &PhysicalNumber::operator+=(const PhysicalNumber &other){
-    double res = convert(*this, other);
+    double res = convert(*this, other); 
     this->data = this->data + res;
     return *this;
 }
