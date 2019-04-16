@@ -10,10 +10,10 @@ using namespace ariel;
 
 PhysicalNumber::PhysicalNumber(double data, Unit u):data(data), unit(u){}
 
-PhysicalNumber::PhysicalNumber(const PhysicalNumber &other){
-    this->data = other.data;
-    this->unit = other.unit;
-}
+PhysicalNumber::PhysicalNumber(const PhysicalNumber &a) {
+	this->data=a.data;
+	this->unit=a.unit;
+ }
 
 double PhysicalNumber::getData(){   return data;    }
 
