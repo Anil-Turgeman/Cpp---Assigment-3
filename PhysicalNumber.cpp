@@ -10,6 +10,11 @@ using namespace ariel;
 
 PhysicalNumber::PhysicalNumber(double data, Unit u):data(data), unit(u){}
 
+PhysicalNumber::PhysicalNumber(const PhysicalNumber &other){
+    this->data = other.data;
+    this->unit = other.unit;
+}
+
 double PhysicalNumber::getData(){   return data;    }
 
 void PhysicalNumber::setData(double other){ data = other;   }
@@ -103,7 +108,7 @@ double PhysicalNumber::convert(const PhysicalNumber &first, const PhysicalNumber
 
             else if (first_unit == Unit::KM) { result = r_val * 1; }
 
-            else { cerr << "can't convert" << endl; }
+            else { throw std::invalid_argument( "Incompatible Dimensions!" ); }
 
             break;
 
@@ -115,7 +120,7 @@ double PhysicalNumber::convert(const PhysicalNumber &first, const PhysicalNumber
 
             else if (first_unit == Unit::M) { result = r_val * 1; }
 
-            else { cerr << "can't convert" << endl; }
+            else { throw std::invalid_argument( "Incompatible Dimensions!" ); }
 
             break;
 
@@ -127,7 +132,7 @@ double PhysicalNumber::convert(const PhysicalNumber &first, const PhysicalNumber
 
             else if (first_unit == Unit::CM) { result = r_val * 1; }
 
-            else { cerr << "can't convert" << endl; }
+            else { throw std::invalid_argument( "Incompatible Dimensions!" ); }
 
         break;
 
@@ -139,7 +144,7 @@ double PhysicalNumber::convert(const PhysicalNumber &first, const PhysicalNumber
             
             else if (first_unit == Unit::HOUR) { result = r_val * 1; }
             
-            else { cerr << "can't convert" << endl; }
+            else { throw std::invalid_argument( "Incompatible Dimensions!" ); }
             
             break;
 
@@ -151,7 +156,7 @@ double PhysicalNumber::convert(const PhysicalNumber &first, const PhysicalNumber
             
             else if (first_unit == Unit::MIN) { result = r_val * 1; }
             
-            else { cerr << "can't convert" << endl; }
+            else { throw std::invalid_argument( "Incompatible Dimensions!" ); }
             
             break;
 
@@ -163,7 +168,7 @@ double PhysicalNumber::convert(const PhysicalNumber &first, const PhysicalNumber
             
             else if (first_unit == Unit::SEC) { result = r_val * 1; }
             
-            else { cerr << "can't convert" << endl; }
+            else { throw std::invalid_argument( "Incompatible Dimensions!" ); }
             
             break;
 
@@ -175,7 +180,7 @@ double PhysicalNumber::convert(const PhysicalNumber &first, const PhysicalNumber
             
             else if (first_unit == Unit::TON) { result = r_val * 1; }
             
-            else { cerr << "can't convert" << endl; }
+            else { throw std::invalid_argument( "Incompatible Dimensions!" ); }
             
             break;
 
@@ -187,7 +192,7 @@ double PhysicalNumber::convert(const PhysicalNumber &first, const PhysicalNumber
             
             else if (first_unit == Unit::KG) { result = r_val * 1; }
             
-            else { cerr << "can't convert" << endl; }
+            else { throw std::invalid_argument( "Incompatible Dimensions!" ); }
             
             break;
 
@@ -199,13 +204,13 @@ double PhysicalNumber::convert(const PhysicalNumber &first, const PhysicalNumber
             
             else if (first_unit == Unit::G) { result = r_val * 1; }
             
-            else { cerr << "can't convert" << endl; }
+            else { throw std::invalid_argument( "Incompatible Dimensions!" ); }
             
             break;
 
         default:
 
-            cerr << "can't convert" << endl;
+            throw std::invalid_argument( "Incompatible Dimensions!" );
         }
     return result;
 }
@@ -213,28 +218,28 @@ double PhysicalNumber::convert(const PhysicalNumber &first, const PhysicalNumber
 bool PhysicalNumber::operator<(const PhysicalNumber &value) const{
     double number = 0;
     try { number = convert(*this, value); }
-    catch (string e) { cerr << "Exception: Error in convert" << endl; }
+    catch (string e) { throw std::invalid_argument( "Exception: Error in convert" ); }
     return this->data < number;
 }
 
 bool PhysicalNumber::operator>(const PhysicalNumber &value) const{
     double number = 0;
     try { number = convert(*this, value); }
-    catch (string e) { cerr << "Exception: Error in convert" << endl; }
+    catch (string e) { throw std::invalid_argument( "Exception: Error in convert" ); }
     return this->data > number;
 }
 
 bool PhysicalNumber::operator<=(const PhysicalNumber &value) const{
     double number = 0;
     try { number = convert(*this, value); }
-    catch (string e) { cerr << "Exception: Error in convert" << endl; }
+    catch (string e) { throw std::invalid_argument( "Exception: Error in convert" ); }
     return this->data <= number;
 }
 
 bool PhysicalNumber::operator>=(const PhysicalNumber &value) const{
     double number = 0;
     try { number = convert(*this, value); }
-    catch (string e) { cerr << "Exception: Error in convert" << endl; }
+    catch (string e) { throw std::invalid_argument( "Exception: Error in convert" ); }
     return this->data >= number;
 }
 
