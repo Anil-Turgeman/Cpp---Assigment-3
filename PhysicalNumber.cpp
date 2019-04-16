@@ -50,14 +50,14 @@ PhysicalNumber &PhysicalNumber::operator-=(const PhysicalNumber &other){
 bool PhysicalNumber::operator==(const PhysicalNumber &value) const{
     double number = 0;
     try { number = convert(*this, value); }
-    catch (string e) { cerr << "Exception: Error in convert" << endl; }
+    catch (string e) { throw std::invalid_argument( "Exception: Error in convert" ); }
     return this->data == number;
 }
 
 bool PhysicalNumber::operator!=(const PhysicalNumber &value) const{
     double number = 0;
     try { number = convert(*this, value); }
-    catch (string e) { cerr << "Exception: Error in convert" << endl; }
+    catch (string e) { throw std::invalid_argument( "Exception: Error in convert" ); }
     return this->data != number;
 }
 
